@@ -1,0 +1,6 @@
+{
+  "id": "BlueMapModelAddon",
+  "entrypoint": "eu.zhincore.bluemapmodeladdon.BlueMapModelAddon",
+  "version": "${version}",
+  "dependencies": ["BlueMapModelLoaders"]
+}
