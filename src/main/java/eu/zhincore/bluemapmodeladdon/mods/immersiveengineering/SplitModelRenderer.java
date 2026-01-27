@@ -11,13 +11,13 @@ import de.bluecolored.bluemap.core.util.Key;
 import de.bluecolored.bluemap.core.util.math.Color;
 import de.bluecolored.bluemap.core.world.block.BlockNeighborhood;
 import eu.zhincore.bluemapmodeladdon.resources.AddonLoaderTypes;
-import me.owies.bluemapmodelloaders.renderer.ObjModelRenderer;
+import me.owies.bluemapmodelloaders.renderer.CompositeModelRenderer;
 import me.owies.bluemapmodelloaders.resources.ExtendedModel;
 import me.owies.bluemapmodelloaders.resources.ModelLoaderResourcePack;
 import me.owies.bluemapmodelloaders.resources.ModelLoaderResourcePackFactory;
 import de.bluecolored.bluemap.core.resources.pack.resourcepack.model.Model;
 
-public class SplitModelRenderer extends ObjModelRenderer {
+public class SplitModelRenderer extends CompositeModelRenderer {
 
   public static final BlockRendererType TYPE = new BlockRendererType.Impl(new Key("bluemapmodeladdon", "split_model"),
       SplitModelRenderer::new);
@@ -33,21 +33,17 @@ public class SplitModelRenderer extends ObjModelRenderer {
   }
 
   @Override
-  public void render(BlockNeighborhood block, Variant variant, TileModelView blockModel, Color color) {
-    Model modelResource = variant.getModel().getResource(resourcePack.getModels()::get);
-    ExtendedModel modelLoaderResource = modelResourcePack.getModels().get(variant.getModel());
+  public void renderModel(BlockNeighborhood block, Variant variant, Model modelResource, ExtendedModel modelLoaderResource, TileModelView blockModel, Color color) {
+    SplitModelExtension modelExtension = modelLoaderResource.getExtension(AddonLoaderTypes.BASIC_SPLIT);
 
-    if (modelLoaderResource == null) {
-      Logger.global.logWarning("SplitModelRenderer: Model loader resource not found");
-      return;
-    }
-
-    renderModel(
-        block,
-        variant,
-        modelResource,
-        modelLoaderResource.getExtension(AddonLoaderTypes.BASIC_SPLIT).getExtendedModel(),
-        blockModel,
-        color);
+    renderCompositeChildModel(
+            block,
+            variant,
+            modelResource,
+            modelLoaderResource,
+            blockModel,
+            color,
+            modelExtension.getInnerModel()
+    );
   }
 }
