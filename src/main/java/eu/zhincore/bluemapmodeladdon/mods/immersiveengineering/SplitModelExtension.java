@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
 
+import me.owies.bluemapmodelloaders.resources.composite.CompositeChildModel;
 import org.jetbrains.annotations.Nullable;
 
 import com.google.gson.annotations.SerializedName;
@@ -15,7 +16,6 @@ import de.bluecolored.bluemap.core.resources.pack.resourcepack.model.Model;
 import de.bluecolored.bluemap.core.resources.pack.resourcepack.model.TextureVariable;
 import de.bluecolored.bluemap.core.resources.pack.resourcepack.texture.Texture;
 import eu.zhincore.bluemapmodeladdon.resources.AddonLoaderTypes;
-import eu.zhincore.bluemapmodeladdon.resources.ChildModel;
 import lombok.Getter;
 import me.owies.bluemapmodelloaders.resources.ExtendedModel;
 import me.owies.bluemapmodelloaders.resources.ModelExtension;
@@ -24,7 +24,7 @@ import me.owies.bluemapmodelloaders.resources.ModelLoaderResourcePack;
 @Getter
 public class SplitModelExtension extends Model implements ModelExtension {
   @SerializedName("inner_model")
-  private ChildModel innerModel;
+  private CompositeChildModel innerModel;
 
   @Override
   public synchronized void applyParent(ExtendedModel parent) {
