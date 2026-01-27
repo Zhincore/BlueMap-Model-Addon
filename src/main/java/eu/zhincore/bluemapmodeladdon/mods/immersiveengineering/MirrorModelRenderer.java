@@ -1,6 +1,5 @@
 package eu.zhincore.bluemapmodeladdon.mods.immersiveengineering;
 
-import de.bluecolored.bluemap.core.logger.Logger;
 import de.bluecolored.bluemap.core.map.TextureGallery;
 import de.bluecolored.bluemap.core.map.hires.RenderSettings;
 import de.bluecolored.bluemap.core.map.hires.TileModelView;
@@ -34,7 +33,7 @@ public class MirrorModelRenderer extends CompositeModelRenderer {
 
   @Override
   public void renderModel(BlockNeighborhood block, Variant variant, Model modelResource, ExtendedModel modelLoaderResource, TileModelView blockModel, Color color) {
-    SplitModelExtension modelExtension = modelLoaderResource.getExtension(AddonLoaderTypes.BASIC_SPLIT);
+    MirrorModelExtension modelExtension = modelLoaderResource.getExtension(AddonLoaderTypes.MIRROR);
 
     int modelStart = blockModel.getStart();
     renderCompositeChildModel(

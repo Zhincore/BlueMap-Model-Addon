@@ -1,6 +1,7 @@
 package eu.zhincore.bluemapmodeladdon.resources;
 
 import de.bluecolored.bluemap.core.util.Key;
+import eu.zhincore.bluemapmodeladdon.mods.immersiveengineering.MirrorModelExtension;
 import eu.zhincore.bluemapmodeladdon.mods.immersiveengineering.MirrorModelRenderer;
 import eu.zhincore.bluemapmodeladdon.mods.immersiveengineering.SplitModelExtension;
 import eu.zhincore.bluemapmodeladdon.mods.immersiveengineering.SplitModelRenderer;
@@ -14,11 +15,11 @@ public final class AddonLoaderTypes {
       new String[] { "immersiveengineering:basic_split" },
       SplitModelExtension.class);
 
-  public static LoaderType<SplitModelExtension> MIRROR = new LoaderType.Imp<>(
+  public static LoaderType<MirrorModelExtension> MIRROR = new LoaderType.Imp<>(
       new Key("bluemapmodeladdon", "ie_mirror"),
       MirrorModelRenderer.TYPE,
       new String[] { "immersiveengineering:mirror" },
-      SplitModelExtension.class);
+      MirrorModelExtension.class);
 
   public static void register() {
     LoaderType.REGISTRY.register(BASIC_SPLIT);
